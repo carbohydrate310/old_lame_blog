@@ -1,0 +1,78 @@
+/* 全体のレトロ演出 */
+body {
+    background-color: #000;
+    background-image: radial-gradient(#333 10%, transparent 10%);
+    background-size: 20px 20px; /* ドット背景 */
+    color: #00FF00; /* マトリックス風グリーン */
+    font-family: "MS UI Gothic", "Meiryo", sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+    cursor: crosshair; /* カーソルを十字に */
+}
+
+/* 虹色に光るテキスト */
+.rainbow-text {
+    font-weight: bold;
+    animation: rainbow 2s linear infinite;
+}
+
+@keyframes rainbow {
+    0% { color: red; }
+    20% { color: yellow; }
+    40% { color: green; }
+    60% { color: blue; }
+    80% { color: purple; }
+    100% { color: red; }
+}
+
+/* 3Dボタン風 */
+.nav-btn {
+    display: block;
+    background: #ccc;
+    color: #000;
+    text-decoration: none;
+    text-align: center;
+    padding: 8px;
+    margin: 5px 0;
+    border-top: 3px solid #eee;
+    border-left: 3px solid #eee;
+    border-right: 3px solid #666;
+    border-bottom: 3px solid #666;
+    font-weight: bold;
+}
+
+.nav-btn:active {
+    border: 3px inset #fff;
+}
+
+.container {
+    display: flex;
+    max-width: 900px;
+    margin: 20px auto;
+}
+
+.sidebar {
+    width: 200px;
+    border: 3px ridge #00FF00;
+    padding: 15px;
+    background: rgba(0, 50, 0, 0.8);
+}
+
+.main-content {
+    flex: 1;
+    margin-left: 15px;
+    padding: 20px;
+    border: 3px double #FF00FF;
+    background: #fff;
+    color: #333;
+}
+
+/* マウスストーカーのキラキラ */
+.star {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: yellow;
+    pointer-events: none;
+    border-radius: 50%;
+}
