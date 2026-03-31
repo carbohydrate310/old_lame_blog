@@ -1,31 +1,43 @@
-// 1. カウンター & キリ番アラート
-let count = parseInt(localStorage.getItem("hit_count") || "770");
-count++;
-localStorage.setItem("hit_count", count);
-document.getElementById("visit-count").innerText = count.toString().padStart(7, '0');
+document.addEventListener("DOMContentLoaded", () => {
+    // 1. 共通メニューの挿入
+    const menuHTML = `
+        <div class="sidebar-box">
+            <h3>MENU</h3>
+            <a href="index.html" class="nav-btn">TOP</a>
+            <a href="diary.html" class="nav-btn">DIARY</a>
+            <a href="link.html" class="nav-btn">LINK</a>
+        </div>
+    `;
+    document.querySelectorAll('#common-menu').forEach(el => el.innerHTML = menuHTML);
 
-if (count % 10 === 0) {
-    alert("祝！！ " + count + " HIT達成！キリ番踏んじゃいましたね♪");
-}
+    // 2. カウンター処理（擬似）
+    const counterEl = document.getElementById("visit-count");
+    if (counterEl) {
+        let count = parseInt(localStorage.getItem("hit_count") || "4648");
+        count++;
+        localStorage.setItem("hit_count", count);
+        counterEl.innerText = count.toString().padStart(7, '0');
+        
+        if (count % 10 === 0) {
+            alert("祝！！ " + count + " HIT達成！キリ番報告してね♪");
+        }
+    }
 
-// 2. 右クリック禁止の警告
-document.body.addEventListener('contextmenu', () => {
-    alert("右クリック禁止だよ！画像のお持ち帰りはやめてね★");
+    // 3. 右クリック禁止
+    document.body.addEventListener('contextmenu', (e) => {
+        alert("右クリック禁止だよ！");
+        e.preventDefault();
+    });
+
+    // 4. マウスストーカー
+    document.addEventListener('mousemove', (e) => {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = e.pageX + 'px';
+        star.style.top = e.pageY + 'px';
+        document.body.appendChild(star);
+        setTimeout(() => star.remove(), 800);
+    });
+
+    console.log("%c隠しメッセージ：ソースを見るなんて通だね！", "color: yellow; background: black;");
 });
-
-// 3. マウスストーカー (キラキラ演出)
-document.addEventListener('mousemove', (e) => {
-    const star = document.createElement('div');
-    star.className = 'star';
-    star.style.left = e.pageX + 'px';
-    star.style.top = e.pageY + 'px';
-    document.body.appendChild(star);
-    
-    // 1秒後に消す
-    setTimeout(() => {
-        star.remove();
-    }, 1000);
-});
-
-// 4. コンソールへの隠しメッセージ
-console.log("%cソースコードを覗くなんて、お主も悪よのう...", "color: yellow; background: black; font-size: 20px;");
