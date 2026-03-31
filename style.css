@@ -1,78 +1,50 @@
-/* 全体のレトロ演出 */
 body {
     background-color: #000;
-    background-image: radial-gradient(#333 10%, transparent 10%);
-    background-size: 20px 20px; /* ドット背景 */
-    color: #00FF00; /* マトリックス風グリーン */
+    background-image: radial-gradient(#333 1px, transparent 1px);
+    background-size: 20px 20px;
+    color: #00FF00;
     font-family: "MS UI Gothic", "Meiryo", sans-serif;
     margin: 0;
     overflow-x: hidden;
-    cursor: crosshair; /* カーソルを十字に */
+    cursor: crosshair;
 }
 
-/* 虹色に光るテキスト */
+/* 虹色テキスト */
 .rainbow-text {
     font-weight: bold;
     animation: rainbow 2s linear infinite;
 }
-
 @keyframes rainbow {
-    0% { color: red; }
-    20% { color: yellow; }
-    40% { color: green; }
-    60% { color: blue; }
-    80% { color: purple; }
-    100% { color: red; }
+    0% { color: red; } 20% { color: yellow; } 40% { color: green; }
+    60% { color: blue; } 80% { color: purple; } 100% { color: red; }
 }
 
-/* 3Dボタン風 */
+/* 点滅 */
+.blink { animation: blink-anime 0.5s step-end infinite; }
+@keyframes blink-anime { 50% { opacity: 0; } }
+
+/* レイアウト */
+.container { display: flex; max-width: 950px; margin: 20px auto; padding: 0 10px; }
+
+.sidebar { width: 220px; border: 3px ridge #00FF00; padding: 10px; background: rgba(0, 40, 0, 0.9); }
+
+.sidebar-box { border-bottom: 1px dashed #00FF00; margin-bottom: 15px; padding-bottom: 10px; }
+
+.main-content { flex: 1; margin-left: 15px; padding: 20px; border: 4px double #FF00FF; background: #fff; color: #333; min-height: 400px; }
+
+/* 3Dボタン */
 .nav-btn {
-    display: block;
-    background: #ccc;
-    color: #000;
-    text-decoration: none;
-    text-align: center;
-    padding: 8px;
-    margin: 5px 0;
-    border-top: 3px solid #eee;
-    border-left: 3px solid #eee;
-    border-right: 3px solid #666;
-    border-bottom: 3px solid #666;
-    font-weight: bold;
+    display: block; background: #ccc; color: #000; text-decoration: none;
+    text-align: center; padding: 8px; margin: 5px 0;
+    border-top: 2px solid #eee; border-left: 2px solid #eee;
+    border-right: 2px solid #666; border-bottom: 2px solid #666;
 }
+.nav-btn:hover { background: #eee; }
 
-.nav-btn:active {
-    border: 3px inset #fff;
-}
-
-.container {
-    display: flex;
-    max-width: 900px;
-    margin: 20px auto;
-}
-
-.sidebar {
-    width: 200px;
-    border: 3px ridge #00FF00;
-    padding: 15px;
-    background: rgba(0, 50, 0, 0.8);
-}
-
-.main-content {
-    flex: 1;
-    margin-left: 15px;
-    padding: 20px;
-    border: 3px double #FF00FF;
-    background: #fff;
-    color: #333;
-}
-
-/* マウスストーカーのキラキラ */
+/* マウスストーカー */
 .star {
-    position: absolute;
-    width: 5px;
-    height: 5px;
-    background: yellow;
-    pointer-events: none;
-    border-radius: 50%;
+    position: absolute; width: 6px; height: 6px; background: #FFFF00;
+    pointer-events: none; border-radius: 50%; z-index: 9999;
 }
+
+.hidden-link { font-size: 1px; color: #000; text-decoration: none; }
